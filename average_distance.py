@@ -38,9 +38,9 @@ def plot_distances(distances, file1, file2):
     plt.title('Histogram of Average Levenshtein-Damerau Distance', fontsize=10)
     plt.xlabel('Levensthein Distance', fontsize=14)
     plt.ylabel('Counts', fontsize=14)
-    plt.xlim(0, 15)
-    ymax = max(distances) + (5/100)*max(distances)
-    plt.ylim(0, ymax)
+    xmax = max(distances) + (5/100)*max(distances)
+    plt.xlim(0, xmax)
+
     
     
     
