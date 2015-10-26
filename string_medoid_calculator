@@ -54,7 +54,8 @@ def main():
     args = parser.parse_args()
 
 
-    #find the medoids for the strings in the input file and output as a pickled dictionary
+    #find the medoids, as well as mean+stdv of distance for the strings in the input file and 
+    #outputs as a pickled dictionary and text file respectively
     medoids, mean, stdv = find_medoids(args.seqs)
     pickle.dump(medoids, open( "medoids.p", "wb"))
     np.savetxt("distance-mean_stdv.txt", np.c_[mean, stdv], fmt="%s", delimiter="\t", header="mean & stdv of distance")                  
