@@ -18,6 +18,10 @@ def find_medoids(seqs):
     for j, k in it.combinations(seqs, 2):
         internal_distances[j,k] = jellyfish.damerau_levenshtein_distance(j,k)
         
+    #find mean and stdv of internal node distances
+    mean = np.mean(list(internal_distances.values()))
+    stdv = np.std(list(internal_distances.values()))    
+    
     ## find the sum of distances for each sequence in the cluster
     dist_sums = {}
     for seq in seqs:     
@@ -36,7 +40,7 @@ def find_medoids(seqs):
     for key, value in dist_sums.items():
         if value == medval:
             medoids[key] = value
-    return medoids
+    return medoids, ("mean", mean), ("stdv", stdv) 
 
 #add argparse main function to take command line arguments (input file names)
 def main():
@@ -51,8 +55,8 @@ def main():
 
 
     #find the medoids for the strings in the input file and output as a pickled dictionary
-    medoids = find_medoids(args.seqs)
+    medoids, mean, stdv = find_medoids(args.seqs)
     pickle.dump(medoids, open( "medoids.p", "wb"))
-                       
+    np.savetxt("distance-mean_stdv.txt", np.c_[mean, stdv], fmt="%s", delimiter="\t", header="mean & stdv of distance")                  
 if __name__ == "__main__":
     main()
