@@ -41,7 +41,7 @@ def find_medoids(seqs):
 #add argparse main function to take command line arguments (input file names)
 def main():
     """
-        Run medoid calculation on input files.
+        Run medoid calculation on input file.
     """
                              
     # Build arguments and grab arguments
