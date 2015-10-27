@@ -31,7 +31,7 @@ def find_medoids(seqs):
                 dists.append(value)
             else:
                 pass
-        dist_sums[seq] = sum(dists)
+        dist_sums[seq] = sum(dists)/len(dists)
 
     # find the sequence/s in the cluster with minimum sum of distances and save only one if degenerate
     medval = min(dist_sums.values())
